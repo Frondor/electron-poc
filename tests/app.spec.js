@@ -39,7 +39,7 @@ const {strict: assert} = require('assert');
 
 
   // Check web-page content
-  const element = await page.$('#app', {strict: true});
+  const element = await page.$('#root', {strict: true});
   assert.notStrictEqual(element, null, 'Can\'t find root element');
   assert.notStrictEqual((await element.innerHTML()).trim(), '', 'Window content is empty');
 
