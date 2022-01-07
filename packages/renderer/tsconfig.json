@@ -1,36 +1,35 @@
 {
   "compilerOptions": {
-    "module": "esnext",
-    "target": "esnext",
-    "sourceMap": false,
-    "moduleResolution": "Node",
-    "skipLibCheck": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
     "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
 
     // Don't automatically include anything.
     // Only include `@types` packages that we need to import.
-    "types" : [],
+    "types": [],
 
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "/@/*": [
-        "./src/*"
-      ]
-    },
-    "lib": ["ESNext", "dom", "dom.iterable"]
+      "/@/*": ["./src/*"]
+    }
   },
-
   "include": [
-    "src/**/*.vue",
-    "src/**/*.ts",
-    "src/**/*.tsx",
+    "./src",
     "types/**/*.d.ts",
     "../../types/**/*.d.ts",
     "../preload/exposedInMainWorld.d.ts"
   ],
-  "exclude": [
-    "**/*.spec.ts",
-    "**/*.test.ts",
-  ]
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"]
 }
