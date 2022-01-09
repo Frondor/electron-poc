@@ -4,8 +4,6 @@
 
 import { contextBridge } from 'electron';
 
-import type { BinaryLike } from 'crypto';
-import { createHash } from 'crypto';
 import servers from './servers';
 
 /**

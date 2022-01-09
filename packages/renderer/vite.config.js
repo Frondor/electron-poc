@@ -1,9 +1,9 @@
 /* eslint-env node */
 
-import { chrome } from "../../.electron-vendors.cache.json";
-import { join } from "path";
-import { builtinModules } from "module";
-import react from "@vitejs/plugin-react";
+import { chrome } from '../../.electron-vendors.cache.json';
+import { join } from 'path';
+import { builtinModules } from 'module';
+import react from '@vitejs/plugin-react';
 
 const PACKAGE_ROOT = __dirname;
 
@@ -16,11 +16,11 @@ const config = {
   root: PACKAGE_ROOT,
   resolve: {
     alias: {
-      "/@/": join(PACKAGE_ROOT, "src") + "/",
+      '/@/': join(PACKAGE_ROOT, 'src') + '/',
     },
   },
   plugins: [react()],
-  base: "./",
+  base: './',
   server: {
     fs: {
       strict: true,
@@ -29,8 +29,8 @@ const config = {
   build: {
     sourcemap: true,
     target: `chrome${chrome}`,
-    outDir: "dist",
-    assetsDir: ".",
+    outDir: 'dist',
+    assetsDir: '.',
     rollupOptions: {
       external: [...builtinModules],
     },

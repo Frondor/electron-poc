@@ -1,0 +1,10 @@
+node_modules
+.github
+.vscode
+
+# Ignore artifacts:
+dist
+buildResources
+**/dist/
+
+!*.{ts,tsx,js,jsx,css,scss,sass,json}

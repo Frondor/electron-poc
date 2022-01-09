@@ -1,17 +1,14 @@
 #!/usr/bin/env node
 
-const {createServer, build, createLogger} = require('vite');
+const { createServer, build, createLogger } = require('vite');
 const electronPath = require('electron');
-const {spawn} = require('child_process');
-
+const { spawn } = require('child_process');
 
 /** @type 'production' | 'development'' */
-const mode = process.env.MODE = process.env.MODE || 'development';
-
+const mode = (process.env.MODE = process.env.MODE || 'development');
 
 /** @type {import('vite').LogLevel} */
 const LOG_LEVEL = 'info';
-
 
 /** @type {import('vite').InlineConfig} */
 const sharedConfig = {
@@ -31,18 +28,17 @@ const stderrFilterPatterns = [
 ];
 
 /**
- * 
- * @param {{name: string; configFile: string; writeBundle: import('rollup').OutputPlugin['writeBundle'] }} param0 
+ *
+ * @param {{name: string; configFile: string; writeBundle: import('rollup').OutputPlugin['writeBundle'] }} param0
  * @returns {import('rollup').RollupWatcher}
  */
-const getWatcher = ({name, configFile, writeBundle}) => {
+const getWatcher = ({ name, configFile, writeBundle }) => {
   return build({
     ...sharedConfig,
     configFile,
-    plugins: [{name, writeBundle}],
+    plugins: [{ name, writeBundle }],
   });
 };
-
 
 /**
  * Start or restart App when source files are changed
@@ -77,8 +73,11 @@ const setupMainPackageWatcher = (viteDevServer) => {
 
       spawnProcess = spawn(String(electronPath), ['.']);
 
-      spawnProcess.stdout.on('data', d => d.toString().trim() && logger.warn(d.toString(), {timestamp: true}));
-      spawnProcess.stderr.on('data', d => {
+      spawnProcess.stdout.on(
+        'data',
+        (d) => d.toString().trim() && logger.warn(d.toString(), { timestamp: true })
+      );
+      spawnProcess.stderr.on('data', (d) => {
         const data = d.toString().trim();
         if (!data) return;
         const mayIgnore = stderrFilterPatterns.some((r) => r.test(data));
@@ -88,7 +87,6 @@ const setupMainPackageWatcher = (viteDevServer) => {
     },
   });
 };
-
 
 /**
  * Start or restart App when source files are changed
