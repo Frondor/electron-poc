@@ -33,7 +33,10 @@ const validators = {
 };
 
 export const launchServer = (address: string, nickname: string) => {
-  const filePath = resolve(__dirname, '../../..', 'bin/gclient.exe');
+  const filePath = import.meta.env.DEV
+    ? resolve(process.cwd(), 'bin/gclient.exe')
+    : resolve(process.resourcesPath, 'bin/gclient.exe');
+
   return exec(
     `start "Window title" ${filePath} --address=${validators.address(
       address
