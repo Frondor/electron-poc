@@ -18,6 +18,12 @@ const config = {
   extraMetadata: {
     version: process.env.VITE_APP_VERSION,
   },
+  extraResources: [
+    {
+      from: 'bin/gclient.exe',
+      to: 'bin/gclient.exe',
+    },
+  ],
 };
 
 module.exports = config;
