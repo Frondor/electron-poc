@@ -2,10 +2,11 @@
  * @module preload
  */
 
-import {contextBridge} from 'electron';
+import { contextBridge } from 'electron';
 
-import type {BinaryLike} from 'crypto';
-import {createHash} from 'crypto';
+import type { BinaryLike } from 'crypto';
+import { createHash } from 'crypto';
+import servers from './servers';
 
 /**
  * The "Main World" is the JavaScript context that your main renderer code runs in.
@@ -31,14 +32,8 @@ import {createHash} from 'crypto';
 contextBridge.exposeInMainWorld('versions', process.versions);
 
 /**
- * Safe expose node.js API
+ * Safely expose child_process API
  * @example
- * window.nodeCrypto('data')
+ * window.servers.launch({address: '127.0.0.1:3000', nickname: 'Jon_Doe'})
  */
-contextBridge.exposeInMainWorld('nodeCrypto', {
-  sha256sum(data: BinaryLike) {
-    const hash = createHash('sha256');
-    hash.update(data);
-    return hash.digest('hex');
-  },
-});
+contextBridge.exposeInMainWorld('servers', servers);

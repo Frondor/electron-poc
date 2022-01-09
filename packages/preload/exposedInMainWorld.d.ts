@@ -1,14 +1,10 @@
 interface Window {
-    /**
-     * Expose Environment versions.
-     * @example
-     * console.log( window.versions )
-     */
-    readonly versions: NodeJS.ProcessVersions;
-    /**
-     * Safe expose node.js API
-     * @example
-     * window.nodeCrypto('data')
-     */
-    readonly nodeCrypto: { sha256sum(data: import("crypto").BinaryLike): string; };
+  /**
+   * Expose Environment versions.
+   * @example
+   * console.log( window.versions )
+   */
+  readonly versions: NodeJS.ProcessVersions;
+
+  readonly servers: { launch: (options: import('./src/servers').LaunchServerOptions) => void };
 }
